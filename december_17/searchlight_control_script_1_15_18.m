@@ -9,7 +9,7 @@ clear all;
 clc;
 close all;
 
-subjects = {'s001'};%'s002' 's003' 's004' 's007' 's008' 's009' 's010' 's011' 's015' 's016' 's018' 's019'};
+subjects = {'s001' 's002' 's003' 's004' 's007' 's008' 's010' 's011' 's015' 's016' 's018' 's019'}; %'s009'
 
 global subjects;
 global isub;

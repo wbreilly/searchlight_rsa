@@ -26,7 +26,7 @@ global isub
 global itri
 
 
-analysisname = sprintf('%s_c%d_15_18', subjects{isub}, itri);
+analysisname = sprintf('%s_con%d_2_1_18_bet_brains', subjects{isub}, itri);
 userOptions.analysisName = analysisname; 
 
 % This is the root directory of the project.
@@ -48,13 +48,14 @@ userOptions.betaPath = '/Users/wbr/walter/fmri/sms_scan_analyses/data_for_spm/ge
 	% The path to a stereotypical mask data file is stored (not including subject-specific identifiers).
 	% "[[subjectName]]" should be used as a placeholder to denote an entry in userOptions.subjectNames
 	% "[[maskName]]" should be used as a placeholder to denote an entry in userOptions.maskNames
-	userOptions.maskPath = '/Users/wbr/walter/fmri/sms_scan_analyses/data_for_spm/masks/[[subjectName]]/FS_ANTS/[[maskName]]';
+% 	userOptions.maskPath = '/Users/wbr/walter/fmri/sms_scan_analyses/data_for_spm/masks/[[subjectName]]/FS_ANTS/[[maskName]]';
+    userOptions.maskPath = '/Users/wbr/walter/fmri/sms_scan_analyses/data_for_spm/batch_preproc_native_10_12_17/[[subjectName]]/002_mprage_sag_NS_g3/[[maskName]]';
 		% beta_resampled_word_form_thresholded.nii
         
     % The list of mask filenames (minus .hdr extension) to be used.
     
-        userOptions.maskNames = {'reslice_allgray'};
-
+%         userOptions.maskNames = {'reslice_allgray'};
+    userOptions.maskNames = {'reslice__mask'};
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -73,7 +74,7 @@ userOptions.betaPath = '/Users/wbr/walter/fmri/sms_scan_analyses/data_for_spm/ge
 		userOptions.voxelSize = [3 3 3];
 	
 		% What radius of searchlight should be used (mm)?
- 		userOptions.searchlightRadius = 4.5;
+ 		userOptions.searchlightRadius = 6;
 	
 %%%%%%%%%%%%%%%%%%%%%%%%
 %% EXPERIMENTAL SETUP %%
@@ -105,7 +106,7 @@ userOptions.getSPMData = false;
 userOptions.conditionColours = [repmat([1 0 0], 48,1); repmat([0 0 1], 44,1)];
 
 % Which distance measure to use when calculating first-order RDMs.
-userOptions.distance = 'pearson';
+userOptions.distance = 'Correlation';
 
 
 % %% Second-order analysis

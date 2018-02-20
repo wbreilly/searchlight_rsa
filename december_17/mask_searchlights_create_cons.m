@@ -6,7 +6,7 @@
 clear all;
 clc;
 close all;
-subjects = {'s001' 's002' 's003' 's004' 's007' 's008' 's009' 's010'...
+subjects = {'s001' 's002' 's003' 's004' 's007' 's008' 's010'...
             's011' 's015' 's016' 's018' 's019'};
         
 % load and prepare trial mask 
@@ -14,23 +14,23 @@ load('SVSS.mat');
 SVSS=SVSS(1:90,1:90);
 
 % loop through subjects
-for isub = 2:length(subjects)
+for isub = 1:length(subjects)
     try
         % load intact RDMs
-        loadthis = sprintf('RDMs/%s_c1_15_18_fMRISearchlight_RDMs.mat', subjects{isub});
+        loadthis = sprintf('RDMs/%s_con1_2_1_18_bet_brains_fMRISearchlight_RDMs.mat', subjects{isub});
         load(loadthis);
 
         % get the RDMs in a nice 5d array with a simple name
         x = struct2array(searchlightRDMs);
 
         % convert to similarity
-        x = -1.*(x-1);
-
+        x = 1-x;
+        
         % could apply the mask to x(:,:,1,1,1) some other way..
     %     x =  bsxfun(@times, x, cast(SVSS,class(x)));
         % this is easier
         x(:,:,1,1,1) = double(SVSS);
-
+        
         % reshape into voxel by trial 2d array
         intact_brains = zeros(90,155648);
         count = 1;
@@ -47,15 +47,15 @@ for isub = 2:length(subjects)
 
         %%
         % load scrambled RDMs
-        loadthis = sprintf('RDMs/%s_c3_15_18_fMRISearchlight_RDMs.mat', subjects{isub});
+        loadthis = sprintf('RDMs/%s_con3_2_1_18_bet_brains_fMRISearchlight_RDMs.mat', subjects{isub});
         load(loadthis);
 
         % get the RDMs in a nice 5d array with a simple name
         x = struct2array(searchlightRDMs);
 
         % convert to similarity
-        x = -1.*(x-1);
-
+        x = 1-x;
+        
         % could apply the mask to x(:,:,1,1,1) some other way..
     %     x =  bsxfun(@times, x, cast(SVSS,class(x)));
         % this is easier
